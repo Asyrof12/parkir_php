@@ -217,22 +217,43 @@ include __DIR__ . '/../includes/header.php';
 @media print {
     body * {
         visibility: hidden;
+        color: #000 !important;
+        background: #fff !important;
     }
     #struk-content, #struk-content * {
-        visibility: visible;
+        visibility: visible !important;
+        color: #000 !important;
+        background: transparent !important;
     }
     #struk-content {
         position: absolute;
         left: 0;
         top: 0;
         width: 100%;
+        background: #fff !important;
+    }
+    .struk {
+        border: 2px dashed #000 !important;
+        background: #fff !important;
     }
 }
 
 .struk {
     padding: 20px;
-    border: 2px dashed #333;
-    background: #fff;
+    border: 2px dashed #333 !important;
+    background: #ffffff !important;
+    color: #111111 !important;
+}
+
+.struk *,
+.struk td,
+.struk th,
+.struk p,
+.struk h2,
+.struk small,
+.struk strong {
+    color: #111111 !important;
+    background: transparent !important;
 }
 
 .struk-table {
@@ -242,6 +263,7 @@ include __DIR__ . '/../includes/header.php';
 
 .struk-table td {
     padding: 5px;
+    color: #111111 !important;
 }
 
 .struk-table td:first-child {

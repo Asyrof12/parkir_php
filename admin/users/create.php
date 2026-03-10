@@ -66,11 +66,11 @@ include __DIR__ . '/../../includes/header.php';
 
     <div class="card">
         <div class="card-body">
-            <form method="POST" action="">
+            <form method="POST" action="" autocomplete="off">
                 <div class="form-group">
                     <label for="username">Username *</label>
                     <input type="text" id="username" name="username" class="form-control" 
-                           required value="<?php echo $_POST['username'] ?? ''; ?>">
+                           autocomplete="off" required value="<?php echo $_POST['username'] ?? ''; ?>">
                 </div>
 
                 <div class="form-group">
@@ -82,7 +82,7 @@ include __DIR__ . '/../../includes/header.php';
                 <div class="form-group">
                     <label for="password">Password *</label>
                     <input type="password" id="password" name="password" class="form-control" 
-                           required minlength="6">
+                           autocomplete="new-password" required minlength="6">
                     <small class="form-text">Minimal 6 karakter</small>
                 </div>
 
