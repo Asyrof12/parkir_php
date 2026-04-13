@@ -200,10 +200,19 @@ include __DIR__ . '/../includes/header.php';
                         <input type="hidden" name="durasi" value="<?php echo $transaksi_detail['durasi']; ?>">
                         <input type="hidden" name="biaya_total" value="<?php echo $transaksi_detail['biaya_total_calc']; ?>">
                         
-                        <button type="submit" class="btn btn-success btn-lg btn-block" 
-                                onclick="return confirm('Proses <?php echo $transaksi_detail['durasi'] == 0 ? 'parkir GRATIS' : 'pembayaran sebesar ' . format_rupiah($transaksi_detail['biaya_total_calc']); ?>?')">
-                            💰 Proses Pembayaran
-                        </button>
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+                                <a href="cetak_struk_keluar.php?id=<?php echo $transaksi_detail['id_parkir']; ?>&waktu_keluar=<?php echo urlencode($transaksi_detail['waktu_keluar_calc']); ?>&durasi=<?php echo $transaksi_detail['durasi']; ?>&biaya=<?php echo $transaksi_detail['biaya_total_calc']; ?>" target="_blank" class="btn btn-info btn-lg btn-block w-100" style="padding: 10px; text-align: center;">
+                                    🖨️ Cetak Struk
+                                </a>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <button type="submit" class="btn btn-success btn-lg btn-block w-100" style="padding: 10px;"
+                                        onclick="return confirm('Proses <?php echo $transaksi_detail['durasi'] == 0 ? 'parkir GRATIS' : 'pembayaran sebesar ' . format_rupiah($transaksi_detail['biaya_total_calc']); ?>?')">
+                                    💰 Proses Pembayaran
+                                </button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>

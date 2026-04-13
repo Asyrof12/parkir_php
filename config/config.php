@@ -9,7 +9,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 // Base URL
-define('BASE_URL', 'http://localhost/parkir_php/');
+define('BASE_URL', 'http://localhost/parkir/');
 
 // Timezone
 date_default_timezone_set('Asia/Jakarta');

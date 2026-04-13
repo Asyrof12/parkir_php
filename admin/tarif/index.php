@@ -101,12 +101,9 @@ include __DIR__ . '/../../includes/header.php';
 
                         <div class="form-group">
                             <label for="jenis_kendaraan">Jenis Kendaraan *</label>
-                            <select id="jenis_kendaraan" name="jenis_kendaraan" class="form-control" required>
-                                <option value="">-- Pilih Jenis --</option>
-                                <option value="motor" <?php echo ($edit_data['jenis_kendaraan'] ?? '') === 'motor' ? 'selected' : ''; ?>>Motor</option>
-                                <option value="mobil" <?php echo ($edit_data['jenis_kendaraan'] ?? '') === 'mobil' ? 'selected' : ''; ?>>Mobil</option>
-                                <option value="lainnya" <?php echo ($edit_data['jenis_kendaraan'] ?? '') === 'lainnya' ? 'selected' : ''; ?>>Lainnya</option>
-                            </select>
+                            <input type="text" id="jenis_kendaraan" name="jenis_kendaraan" class="form-control" 
+                                   required placeholder="Contoh: Motor, Mobil, Truk"
+                                   value="<?php echo $edit_data['jenis_kendaraan'] ?? ''; ?>">
                         </div>
 
                         <div class="form-group">

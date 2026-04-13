@@ -8,10 +8,10 @@
 }
 
 :root {
-    --primary: #6366f1;
-    --primary-dark: #4338ca;
-    --primary-soft: rgba(99, 102, 241, 0.12);
-    --accent: #a78bfa;
+    --primary: #8b5cf6;
+    --primary-dark: #7c3aed;
+    --primary-soft: rgba(139, 92, 246, 0.15);
+    --accent: #c084fc;
     --success: #34d399;
     --danger: #f87171;
     --warning: #fbbf24;
@@ -22,7 +22,7 @@
     --border: rgba(255, 255, 255, 0.12);
     --glass-border: rgba(255, 255, 255, 0.18);
     --shadow-soft: 0 4px 24px rgba(0, 0, 0, 0.25);
-    --shadow-floating: 0 20px 60px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(99, 102, 241, 0.2);
+    --shadow-floating: 0 20px 60px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(139, 92, 246, 0.2);
     --radius-lg: 18px;
     --radius-md: 12px;
 }
@@ -93,6 +93,7 @@ html {
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
     background: #0f0c29;
+    /* Fallback base color */
     color: var(--text-main);
     line-height: 1.6;
     min-height: 100vh;
@@ -107,14 +108,36 @@ body::before {
     position: fixed;
     inset: 0;
     background:
-        radial-gradient(ellipse 80% 60% at 10% 20%, rgba(99, 102, 241, 0.45) 0%, transparent 60%),
-        radial-gradient(ellipse 70% 70% at 85% 10%, rgba(167, 139, 250, 0.35) 0%, transparent 55%),
-        radial-gradient(ellipse 60% 80% at 50% 90%, rgba(79, 172, 254, 0.3) 0%, transparent 55%),
-        radial-gradient(ellipse 90% 50% at 90% 70%, rgba(236, 72, 153, 0.2) 0%, transparent 50%),
-        linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-    background-size: 100% 100%;
-    animation: gradientShift 18s ease infinite;
+        radial-gradient(ellipse 80% 60% at 10% 20%, rgba(139, 92, 246, 0.6) 0%, transparent 70%),
+        radial-gradient(ellipse 70% 70% at 85% 10%, rgba(192, 132, 252, 0.5) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 80% at 50% 90%, rgba(124, 58, 237, 0.4) 0%, transparent 65%),
+        radial-gradient(ellipse 90% 50% at 90% 70%, rgba(216, 180, 254, 0.3) 0%, transparent 60%),
+        linear-gradient(135deg, #0f0c29 0%, #1e1b4b 50%, #2e1065 100%);
+    background-size: 200% 200%;
+    animation: backgroundFlow 25s ease infinite !important;
     z-index: -2;
+}
+
+@keyframes backgroundFlow {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    25% {
+        background-position: 100% 0%;
+    }
+
+    50% {
+        background-position: 100% 100%;
+    }
+
+    75% {
+        background-position: 0% 100%;
+    }
+
+    100% {
+        background-position: 0% 0%;
+    }
 }
 
 /* Moving orb blobs */
@@ -124,7 +147,7 @@ body::after {
     width: 500px;
     height: 500px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.3) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%);
     top: -150px;
     right: -100px;
     animation: floatOrb1 12s ease-in-out infinite;
@@ -377,15 +400,15 @@ body::after {
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #6366f1 0%, #a78bfa 100%);
+    background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%);
     color: #fff;
     border: none;
-    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+    box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, #4338ca 0%, #7c3aed 100%);
-    box-shadow: 0 6px 24px rgba(99, 102, 241, 0.55);
+    background: linear-gradient(135deg, #7c3aed 0%, #c026d3 100%);
+    box-shadow: 0 6px 24px rgba(139, 92, 246, 0.55);
     transform: translateY(-2px);
 }
 
@@ -480,8 +503,10 @@ body::after {
 }
 
 .action-card {
-    background: #ffffff;
-    border: 1px solid var(--border);
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 24px;
     padding: 56px 40px;
     text-decoration: none;
@@ -641,20 +666,94 @@ footer {
 /* ===== PRINT - Paksa semua teks hitam saat cetak ===== */
 @media print {
 
-    body,
-    body * {
-        color: #000 !important;
-        background: #fff !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
+    /* Base print settings */
+    html,
+    body {
+        background: #ffffff !important;
+        color: #000000 !important;
+        height: auto !important;
+        min-height: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: block !important;
     }
 
+    /* Center the receipt on the page */
+    body {
+        display: flex !important;
+        justify-content: center !important;
+        align-items: flex-start !important;
+        padding-top: 20px !important;
+    }
+
+    /* Hide decorative background blobs */
+    body::before,
+    body::after {
+        display: none !important;
+        content: none !important;
+    }
+
+    /* Hide EVERYTHING except the receipt container */
+    body>*:not(.container):not(.main-content),
+    .navbar,
+    .nav-container,
+    .page-header,
+    .btn,
+    .card-header,
+    .card-footer,
+    .alert,
+    footer,
+    .quick-actions,
+    form {
+        display: none !important;
+    }
+
+    * {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+    }
+
+    /* Reset layout for print */
+    .container,
+    .main-content {
+        padding: 0 !important;
+        margin: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        display: block !important;
+        background: transparent !important;
+    }
+
+    /* Ensure parent columns don't interfere */
+    .row,
+    .col-md-6,
+    .card,
+    .card-body {
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        display: block !important;
+        width: 100% !important;
+        overflow: visible !important;
+    }
+
+    /* Center the specific receipt box */
     .struk {
-        border: 2px dashed #000 !important;
-        background: #fff !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+        border: 2px dashed #000000 !important;
+        display: block !important;
+        padding: 30px !important;
+        width: 100% !important;
+        max-width: 380px !important;
+        margin: 0 auto !important;
+        box-sizing: border-box !important;
     }
 
     .struk * {
-        color: #000 !important;
+        color: #000000 !important;
+        background: transparent !important;
     }
 }

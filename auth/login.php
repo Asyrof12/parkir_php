@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/style.css">
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>assets/css/style.css?v=<?php echo time(); ?>">
     <style>
         /* Pusatkan halaman login sepenuhnya */
         html, body {
@@ -99,7 +99,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, #e0eaff 0%, #f8fafc 50%, #e9f0ff 100%);
+            background: transparent !important;
             padding: 20px;
         }
         .login-container {
@@ -109,14 +109,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             justify-content: center;
         }
         .login-box {
-            background: #ffffff;
-            border: 1px solid rgba(226, 232, 240, 0.8);
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
             border-radius: 28px;
             padding: 52px 48px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.08), 0 4px 20px rgba(0,0,0,0.04);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.05), 0 4px 20px rgba(0,0,0,0.02);
             width: 100%;
             max-width: 440px;
-            animation: slideUp 0.5s cubic-bezier(0.175,0.885,0.32,1.275);
+            animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
         @keyframes slideUp {
             from { opacity: 0; transform: translateY(30px); }

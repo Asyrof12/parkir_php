@@ -65,6 +65,7 @@ include __DIR__ . '/../includes/header.php';
             <div class="stat-info">
                 <h3><?php echo format_rupiah($total_pendapatan); ?></h3>
                 <p>Pendapatan Hari Ini</p>
+                <a href="cetak_pendapatan.php" target="_blank" class="btn btn-sm btn-success mt-2" style="font-size: 12px; padding: 4px 8px;">🖨️ Cetak Struk</a>
             </div>
         </div>
     </div>

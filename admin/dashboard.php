@@ -23,6 +23,11 @@ try {
     $stmt = $db->query("SELECT COUNT(*) as total FROM tb_area_parkir");
     $total_area = $stmt->fetch()['total'];
 
+    // Total pendapatan hari ini
+    $stmt = $db->query("SELECT SUM(biaya_total) as total FROM tb_transaksi 
+                        WHERE DATE(waktu_keluar) = CURDATE() AND status = 'keluar'");
+    $total_pendapatan_hari_ini = $stmt->fetch()['total'] ?? 0;
+
     // Transaksi terbaru
     $stmt = $db->query("SELECT t.*, k.plat_nomor, a.nama_area, u.nama_lengkap 
                         FROM tb_transaksi t 
@@ -79,6 +84,15 @@ include __DIR__ . '/../includes/header.php';
             <div class="stat-info">
                 <h3><?php echo $total_area; ?></h3>
                 <p>Area Parkir</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">💰</div>
+            <div class="stat-info">
+                <h3><?php echo format_rupiah($total_pendapatan_hari_ini); ?></h3>
+                <p>Pendapatan Hari Ini</p>
+                <a href="cetak_pendapatan.php" target="_blank" class="btn btn-sm btn-success mt-2" style="font-size: 12px; padding: 4px 8px;">🖨️ Cetak Struk</a>
             </div>
         </div>
     </div>

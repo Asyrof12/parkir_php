@@ -214,35 +214,14 @@ include __DIR__ . '/../includes/header.php';
 </div>
 
 <style>
-@media print {
-    body * {
-        visibility: hidden;
-        color: #000 !important;
-        background: #fff !important;
-    }
-    #struk-content, #struk-content * {
-        visibility: visible !important;
-        color: #000 !important;
-        background: transparent !important;
-    }
-    #struk-content {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        background: #fff !important;
-    }
-    .struk {
-        border: 2px dashed #000 !important;
-        background: #fff !important;
-    }
-}
-
+/* Struk styling for screen and print */
 .struk {
     padding: 20px;
     border: 2px dashed #333 !important;
     background: #ffffff !important;
     color: #111111 !important;
+    margin: 20px auto;
+    max-width: 400px;
 }
 
 .struk *,

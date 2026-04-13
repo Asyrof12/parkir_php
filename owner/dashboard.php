@@ -15,11 +15,12 @@ try {
     $stmt = $db->query("SELECT COUNT(*) as total FROM tb_transaksi");
     $total_transaksi = $stmt->fetch()['total'];
 
-    // Pendapatan bulan ini
-    $stmt = $db->query("SELECT SUM(biaya_total) as total FROM tb_transaksi 
-                        WHERE status = 'keluar' AND MONTH(waktu_keluar) = MONTH(CURDATE()) 
-                        AND YEAR(waktu_keluar) = YEAR(CURDATE())");
     $pendapatan_bulan_ini = $stmt->fetch()['total'] ?? 0;
+
+    // Pendapatan hari ini
+    $stmt = $db->query("SELECT SUM(biaya_total) as total FROM tb_transaksi 
+                        WHERE status = 'keluar' AND DATE(waktu_keluar) = CURDATE()");
+    $pendapatan_hari_ini = $stmt->fetch()['total'] ?? 0;
 
 } catch(PDOException $e) {
     $error = $e->getMessage();
@@ -44,6 +45,14 @@ include __DIR__ . '/../includes/header.php';
             <div class="stat-info">
                 <h3><?php echo format_rupiah($total_pendapatan); ?></h3>
                 <p>Total Pendapatan</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">💰</div>
+            <div class="stat-info">
+                <h3><?php echo format_rupiah($pendapatan_hari_ini); ?></h3>
+                <p>Pendapatan Hari Ini</p>
             </div>
         </div>
 
